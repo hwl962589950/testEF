@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="testModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="testModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="aa">
           <Key>
             <PropertyRef Name="A" />
@@ -12,11 +12,17 @@
           <Property Name="A" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="d" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ddd">
+          <Key>
+            <PropertyRef Name="ddd" />
+          </Key>
+          <Property Name="ddd" Type="int" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="testModelStoreContainer">
           <EntitySet Name="aa" EntityType="Self.aa" Schema="test" store:Type="Tables" />
+          <EntitySet Name="ddd" EntityType="Self.ddd" Schema="test" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="testModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -29,7 +35,14 @@
         </EntityType>
         <EntityContainer Name="testEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="aa" EntityType="Self.aa" />
+          <EntitySet Name="ddd" EntityType="testModel.ddd" />
         </EntityContainer>
+        <EntityType Name="ddd">
+          <Key>
+            <PropertyRef Name="ddd1" />
+          </Key>
+          <Property Name="ddd1" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -41,6 +54,13 @@
               <MappingFragment StoreEntitySet="aa">
                 <ScalarProperty Name="A" ColumnName="A" />
                 <ScalarProperty Name="d" ColumnName="d" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ddd">
+            <EntityTypeMapping TypeName="testModel.ddd">
+              <MappingFragment StoreEntitySet="ddd">
+                <ScalarProperty Name="ddd1" ColumnName="ddd" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

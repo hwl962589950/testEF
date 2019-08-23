@@ -26,5 +26,6 @@ namespace Models
         }
     
         public DbSet<aa> aa { get; set; }
+        public DbSet<ddd> ddd { get; set; }
     }
 }
